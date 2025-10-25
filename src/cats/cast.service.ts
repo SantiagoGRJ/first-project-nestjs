@@ -3,7 +3,7 @@ import { ICast } from "./create-cat.dto";
 
 
 @Injectable()
-export class CastService{
+export class CatsService{
     
     private readonly casts: ICast[] = [];
 
