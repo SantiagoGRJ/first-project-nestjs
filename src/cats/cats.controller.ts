@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import type { ICast } from './create-cat.dto';
 import { CatsService } from './cast.service';
+import type { ICat } from './interfaces/cats.interface';
+import { CreateCatDto } from './dto/create-cat.dto';
+
 
 
 
@@ -10,12 +12,12 @@ export class CatsController {
     constructor(private catsService: CatsService){}
 
     @Post()
-    async create(@Body() createCatDto: ICast){
+    async create(@Body() createCatDto: CreateCatDto){
         this.catsService.create(createCatDto)
     }
 
     @Get()
-    async findAll() : Promise<ICast[]> {
+    async findAll() : Promise<ICat[]> {
         return this.catsService.findAll()
     }
 
