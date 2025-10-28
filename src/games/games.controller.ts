@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { GamesService } from "./games.service";
+import { CreateGameDto } from "./dto/create-game.dto";
+import { FindOneParams } from "./dto/FindOneParams.dto";
 
 
 @Controller('games')
@@ -11,8 +13,14 @@ export class GameController{
     getAllGames(){
         return this.gamesService.getAllGames()
     }
+
+    @Get('/:id')
+    getGameById(@Param() params:FindOneParams){
+        return this.gamesService.getGameById(params.id);
+    }
+
     @Post()
-    createGame(@Body() game:any){
+    createGame(@Body() game:CreateGameDto){
         return this.gamesService.createGame(game)
     }
 }
