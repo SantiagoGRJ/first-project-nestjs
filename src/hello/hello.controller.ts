@@ -1,14 +1,26 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
-import type { Request, Response } from 'express';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { HelloService } from './hello.service';
+import type { IHello } from './interfaces/hello.interface';
 
 @Controller('hello')
 export class HelloController {
 
+    constructor(private helloService:HelloService) {}
+
     @Get()
-    index(@Req() request:Request,@Res() response:Response) {
-        console.log(request.url)
-        return response.status(200).json({
-            message:"Hello World"
-        })
+    index() {
+        
+        return this.helloService.getAllHello()
+    }
+
+    @Post('')
+    createData(@Body() value:IHello){
+      return  this.helloService.createData(value)
+    }
+
+
+    @Get('/:id')
+    getHelloById(@Param('id') id:string){
+       return this.helloService.getByIdHello(Number(id))
     }
 }
