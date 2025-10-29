@@ -1,14 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, Query } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
+import { CreateTaskDto } from "./dto/create-task.dto";
+import { FindOneParams } from "./dto/FindOneParams.dto";
 
 @Controller('/tasks')
 export class TaskController {
 
-    tasksService : TasksService
+    
 
-    constructor(tasksService : TasksService) {
-        this.tasksService=tasksService
-    }
+    constructor(private tasksService : TasksService) {}
 
     @Get()
     getAllTasks(@Query() query:any){
@@ -19,15 +19,15 @@ export class TaskController {
     }
 
      @Get('/:id') // tasks/2-3-2-2
-    getTask(@Param('id') id:string){
-       console.log(id)
+    getTask(@Param() params:FindOneParams){
+       console.log(typeof params.id)
         // get data in database
         // generate get api 
-       return this.tasksService.getTask(Number(id));
+       return this.tasksService.getTask(Number(params.id));
     }
 
     @Post()
-    createTasks(@Body() task:any ){
+    createTasks(@Body() task:CreateTaskDto ){
        
         return this.tasksService.createTasks(task)
     }

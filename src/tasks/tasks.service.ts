@@ -5,7 +5,14 @@ import { ITasks } from "./interfaces/tasks.interface";
 @Injectable()
 export class TasksService{
 
-    private tasks = []
+    private tasks : any[] = [
+        {
+            id:1,
+            name:"First time",
+            content:"First content",
+            status:true
+        }
+    ]
 
     getTasks(): ITasks[] {
         return this.tasks
@@ -21,7 +28,7 @@ export class TasksService{
        return taskFound
     }
 
-    createTasks(task:any ){
+    createTasks(task:ITasks ){
        // console.log(task)
         this.tasks.push({
             ...task,
