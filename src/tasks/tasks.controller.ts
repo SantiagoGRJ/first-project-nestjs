@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Patch, Post, Put, Query } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { FindOneParams } from "./dto/FindOneParams.dto";
@@ -19,11 +19,11 @@ export class TaskController {
     }
 
      @Get('/:id') // tasks/2-3-2-2
-    getTask(@Param() params:FindOneParams){
-       console.log(typeof params.id)
+    getTask(@Param('id', new ParseIntPipe({ errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id:number){
+       console.log(typeof id)
         // get data in database
         // generate get api 
-       return this.tasksService.getTask(Number(params.id));
+       return this.tasksService.getTask(Number(id));
     }
 
     @Post()
