@@ -4,7 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 @Injectable()
 export class UsersService {
 
-    private users = [
+    private users : any[] = [
         {
             id:1,
             name:"Santi"
@@ -20,6 +20,12 @@ export class UsersService {
     }
 
     createUser(user:CreateUserDto){
-        return user
+
+        this.users.push(user)
+
+        return {
+            ...user,
+            id:this.users.length+1
+        }
     }
 }
