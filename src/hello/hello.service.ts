@@ -19,13 +19,5 @@ export class HelloService {
         return value
     }
 
-    getByIdHello(id: number) {
-        const dataReturn = this.data.find(value => value.id === id)
-
-        if (!dataReturn) {
-            return new NotFoundException(`The data with id ${id} not found`)
-        }
-
-        return dataReturn
-    }
+   
 }
