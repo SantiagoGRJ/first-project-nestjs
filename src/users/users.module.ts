@@ -10,12 +10,12 @@ import { AuthMiddleware } from './auth/auth.middleware';
 })
 export class UsersModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(
-      { path: '/users', method: RequestMethod.GET },
-      {
-        path: '/users',
-        method: RequestMethod.POST
-      }
-    ).apply(AuthMiddleware).forRoutes('users')
+    // consumer.apply(LoggerMiddleware).forRoutes(
+    //   { path: '/users', method: RequestMethod.GET },
+    //   {
+    //     path: '/users',
+    //     method: RequestMethod.POST
+    //   }
+    // ).apply(AuthMiddleware).forRoutes('users')
   }
 }

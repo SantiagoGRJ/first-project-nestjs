@@ -1,0 +1,10 @@
+version: '3.8'
+service:
+  db:
+    image: postgres
+    restart: always
+    enviroment:
+    POSTGRES_USER:
+    POSTGRES_PASSWORD:
+    POSTGRES_DB:
+  volumes:
