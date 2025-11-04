@@ -5,10 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
-  previewFeatures = ["driverAdapters"] // opcional, si ya lo tenías
-  binaryTargets = ["native"]
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
 }
 
 datasource db {
