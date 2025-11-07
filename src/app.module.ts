@@ -9,10 +9,11 @@ import { GamesModule } from './games/games.module';
 import { PrismaModule } from './prisma.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
-  imports: [CatsModule, TasksModule, ProjectsModule, AuthModule, UsersModule, HelloModule, GamesModule,PrismaModule],
+  imports: [CatsModule, ConfigModule.forRoot(), TasksModule, ProjectsModule, AuthModule, UsersModule, HelloModule, GamesModule,PrismaModule],
   controllers: [AppController],
   providers: [AppService],
 })
